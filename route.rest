@@ -1,0 +1,26 @@
+###
+GET http://localhost:3000/meals
+
+###
+GET http://localhost:3000/meals/644fa7dd87212dfd5eb0b784
+
+###
+DELETE http://localhost:3000/meals/644fa7dd87212dfd5eb0b784 
+
+###
+POST http://localhost:3000/meals
+Content-Type: application/json
+
+{
+    "name":"Curry",
+    "ingredients":["sweet potate", "coconut milk", "chick peas"]
+}
+
+###
+PATCH http://localhost:3000/meals/644fa7dd87212dfd5eb0b784 
+Content-Type: application/json
+
+{
+    "name":"Curry2",
+    "ingredients":["sweet potate", "coconut milk", "chick peas"]
+}

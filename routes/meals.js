@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 })
 // Getting one 
 router.get("/:id", getMeal, (req, res) => {
-    res.send(res.meal.name)
+    res.send(res.meal)
 })
 // Creating one
 router.post("/", async (req, res) => {

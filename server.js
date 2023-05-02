@@ -4,7 +4,7 @@ const app = express()
 const mongoose = require('mongoose')
 
 
-
+console.log(process.env.DATABASE_URL)
 mongoose.set("strictQuery", false);
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 

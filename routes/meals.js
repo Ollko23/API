@@ -4,6 +4,7 @@ const Meal = require("../models/meal")
 
 // Getting all
 router.get("/", async (req, res) => {
+    console.log("getting all")
     try {
         const meal = await Meal.find()
         res.json(meal)
@@ -13,10 +14,14 @@ router.get("/", async (req, res) => {
 })
 // Getting one 
 router.get("/:id", getMeal, (req, res) => {
+    console.log("getting one")
+
     res.send(res.meal)
 })
 // Creating one
 router.post("/", async (req, res) => {
+    console.log("creating one")
+
     const meal = new Meal({
         name: req.body.name,
         ingredients: req.body.ingredients
@@ -31,6 +36,8 @@ router.post("/", async (req, res) => {
 
 // Updating one
 router.patch("/:id", getMeal, async (req, res) => {
+    console.log("updating one")
+
     if (req.body.name != null) { res.meal.name = req.body.name }
     if (req.body.ingredients != null) { res.meal.ingredients = req.body.ingredients }
     try {
@@ -44,6 +51,8 @@ router.patch("/:id", getMeal, async (req, res) => {
 )
 // Deleting one
 router.delete("/:id", getMeal, async (req, res) => {
+    console.log("deleting one")
+
     try {
         await res.meal.deleteOne()
         res.json({ message: "Meal deleted" })

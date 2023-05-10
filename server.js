@@ -17,6 +17,6 @@ app.use(cors({
 app.use(express.json())
 
 const meals = require("./routes/meals")
-
-app.listen(3000, () => { console.log("server started") })
+const port = process.env.PORT || 3000
+app.listen(port, () => { console.log("server started") })
 app.use("/meals", meals)

@@ -1,4 +1,4 @@
-// require('dotenv').config()
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
@@ -17,6 +17,8 @@ app.use(cors({
 app.use(express.json())
 
 const meals = require("./routes/meals")
-const port = process.env.PORT || 3000
+const menu = require("./routes/menu")
+const port = process.env.PORT || 3500
 app.listen(port, () => { console.log("server started") })
 app.use("/meals", meals)
+app.use("/menu", menu)

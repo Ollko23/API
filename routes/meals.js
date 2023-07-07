@@ -12,11 +12,19 @@ router.get("/", async (req, res) => {
         res.status(500).json({ message: err.message })
     }
 })
-// Getting one 
-router.get("/:id", getMeal, (req, res) => {
-    console.log("getting one")
 
-    res.send(res.meal)
+// Getting one 
+router.get("/:id", async (req, res) => {
+    console.log("getting one")
+    const id = req.params.id
+    try {
+        const meal = await Meal.find(
+            { _id: id }
+        );
+        res.json(meal)
+    } catch (err) {
+        res.status(400).json({ message: err.message })
+    }
 })
 // Creating one
 router.post("/", async (req, res) => {
@@ -24,7 +32,10 @@ router.post("/", async (req, res) => {
 
     const meal = new Meal({
         name: req.body.name,
-        ingredients: req.body.ingredients
+        img: req.body.img,
+        ingredients: req.body.ingredients,
+        link: req.body.link,
+        instructions: req.body.instructions
     })
     try {
         const newMeal = await meal.save()
@@ -35,41 +46,31 @@ router.post("/", async (req, res) => {
 })
 
 // Updating one
-router.patch("/:id", getMeal, async (req, res) => {
-    console.log("updating one")
+// router.patch("/:id", async (req, res) => {
+//     console.log("updating one")
 
-    if (req.body.name != null) { res.meal.name = req.body.name }
-    if (req.body.ingredients != null) { res.meal.ingredients = req.body.ingredients }
-    try {
-        const updatedMeal = await res.meal.save()
-        res.json(updatedMeal)
-    } catch (err) {
-        res.status(400).json({ message: err.message })
-    }
+//     if (req.body.name != null) { res.meal.name = req.body.name }
+//     if (req.body.ingredients != null) { res.meal.ingredients = req.body.ingredients }
+//     try {
+//         const updatedMeal = await res.meal.save()
+//         res.json(updatedMeal)
+//     } catch (err) {
+//         res.status(400).json({ message: err.message })
+//     }
 
-}
-)
+// }
+// )
+
 // Deleting one
-router.delete("/:id", getMeal, async (req, res) => {
+router.delete("/:id", async (req, res) => {
     console.log("deleting one")
 
+    const id = req.params.id
     try {
-        await res.meal.deleteOne()
-        res.json({ message: "Meal deleted" })
+        const response = await Meal.deleteOne({ _id: id })
+        res.status(201).json(response)
     } catch (err) {
         res.status(500).json({ message: err.message })
     }
 })
-
-async function getMeal(req, res, next) {
-    let meal
-    try {
-        meal = await Meal.findById(req.params.id)
-        if (meal == null) return res.status(404).json({ message: "meal not found" })
-    } catch (err) {
-        return res.status(500).json({ message: err.message })
-    }
-    res.meal = meal
-    next()
-}
 module.exports = router

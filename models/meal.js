@@ -20,8 +20,8 @@ const mealSchema = new mongoose.Schema({
     },
     instructions: {
         type: String,
-        required: true
+        required: false
     }
 })
 
-module.exports = mongoose.model("Meal", mealSchema)
+module.exports = mongoose.model("meals", mealSchema)

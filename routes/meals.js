@@ -37,6 +37,7 @@ router.post("/", async (req, res) => {
         link: req.body.link,
         instructions: req.body.instructions
     })
+    console.log(meal)
     try {
         const newMeal = await meal.save()
         res.status(201).json(newMeal)

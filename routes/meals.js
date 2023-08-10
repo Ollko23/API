@@ -63,7 +63,7 @@ router.post("/", async (req, res) => {
 // )
 
 // Updateing lastUse
-router.post("/:id", async (req, res) => {
+router.put("/", async (req, res) => {
     try {
         const { objectId, newDate } = req.body;
 

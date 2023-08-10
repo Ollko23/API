@@ -68,9 +68,8 @@ router.put("/:id", async (req, res) => {
     // const { objectId, newDate } = req.body;
     const { newDate } = req.body;
     const id = req.params.id
-    console.log(id)
     try {
-        const updatedObject = await Meal.findByIdAndUpdate({ id }, {
+        const updatedObject = await Meal.findByIdAndUpdate(id, {
             $set: { lastUse: newDate },
         }, { new: true });
         console.log(updatedObject)

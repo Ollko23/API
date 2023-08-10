@@ -62,6 +62,22 @@ router.post("/", async (req, res) => {
 // }
 // )
 
+// Updateing lastUse
+router.post("/:id", async (req, res) => {
+    try {
+        const { objectId, newDate } = req.body;
+
+        const updatedObject = await ObjectModel.findByIdAndUpdate(objectId, {
+            $set: { lastUse: newDate },
+        }, { new: true });
+
+        res.json(updatedObject);
+    } catch (error) {
+        console.error('Error updating object:', error);
+        res.status(500).json({ error: 'An error occurred while updating the object.' });
+    }
+})
+
 // Deleting one
 router.delete("/:id", async (req, res) => {
     console.log("deleting one")

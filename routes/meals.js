@@ -64,7 +64,6 @@ router.post("/", async (req, res) => {
 
 // Updateing lastUse
 router.put("/:id", async (req, res) => {
-    console.log(data)
     // res.set('Access-Control-Allow-Origin', '*');
     try {
         // const { objectId, newDate } = req.body;

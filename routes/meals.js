@@ -63,11 +63,12 @@ router.post("/", async (req, res) => {
 // )
 
 // Updateing lastUse
-router.put("/", async (req, res) => {
+router.post("/:id", async (req, res) => {
     try {
-        const { objectId, newDate } = req.body;
-
-        const updatedObject = await ObjectModel.findByIdAndUpdate(objectId, {
+        // const { objectId, newDate } = req.body;
+        const { newDate } = req.body;
+        const id = req.params.id
+        const updatedObject = await ObjectModel.findByIdAndUpdate(id, {
             $set: { lastUse: newDate },
         }, { new: true });
 

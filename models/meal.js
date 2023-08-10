@@ -23,7 +23,7 @@ const mealSchema = new mongoose.Schema({
         required: false
     },
     lastUse: {
-        type: String,
+        type: Number,
         required: false
     }
 })

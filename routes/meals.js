@@ -63,14 +63,14 @@ router.post("/", async (req, res) => {
 // )
 
 // Updateing lastUse
-router.post("/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
     console.log(data)
-    res.set('Access-Control-Allow-Origin', '*');
+    // res.set('Access-Control-Allow-Origin', '*');
     try {
         // const { objectId, newDate } = req.body;
         const { newDate } = req.body;
         const id = req.params.id
-        const updatedObject = await ObjectModel.findByIdAndUpdate(id, {
+        const updatedObject = await Meal.findByIdAndUpdate(id, {
             $set: { lastUse: newDate },
         }, { new: true });
 

@@ -21,6 +21,10 @@ const mealSchema = new mongoose.Schema({
     instructions: {
         type: String,
         required: false
+    },
+    lastUse: {
+        type: String,
+        required: false
     }
 })
 

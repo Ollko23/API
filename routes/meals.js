@@ -72,6 +72,7 @@ router.put("/:id", async (req, res) => {
         const updatedObject = await Meal.findByIdAndUpdate(id, {
             $set: { lastUse: newDate },
         }, { new: true });
+        console.log(updatedObject)
         res.status(202).json(updatedObject);
     } catch (error) {
         console.error('Error updating object:', error);

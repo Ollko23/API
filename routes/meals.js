@@ -65,15 +65,14 @@ router.post("/", async (req, res) => {
 // Updateing lastUse
 router.put("/:id", async (req, res) => {
     // res.set('Access-Control-Allow-Origin', '*');
+    // const { objectId, newDate } = req.body;
+    const { newDate } = req.body;
+    const id = req.params.id
     try {
-        // const { objectId, newDate } = req.body;
-        const { newDate } = req.body;
-        const id = req.params.id
         const updatedObject = await Meal.findByIdAndUpdate(id, {
             $set: { lastUse: newDate },
         }, { new: true });
-
-        res.json(updatedObject);
+        res.status(202).json(updatedObject);
     } catch (error) {
         console.error('Error updating object:', error);
         res.status(500).json({ error: 'An error occurred while updating the object.' });
